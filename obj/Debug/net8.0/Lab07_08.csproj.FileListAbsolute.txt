@@ -1,0 +1,14 @@
+D:\Desktop\HocTrenTruong\Lab07_08\bin\Debug\net8.0\Lab07_08.exe
+D:\Desktop\HocTrenTruong\Lab07_08\bin\Debug\net8.0\Lab07_08.deps.json
+D:\Desktop\HocTrenTruong\Lab07_08\bin\Debug\net8.0\Lab07_08.runtimeconfig.json
+D:\Desktop\HocTrenTruong\Lab07_08\bin\Debug\net8.0\Lab07_08.dll
+D:\Desktop\HocTrenTruong\Lab07_08\bin\Debug\net8.0\Lab07_08.pdb
+D:\Desktop\HocTrenTruong\Lab07_08\obj\Debug\net8.0\Lab07_08.GeneratedMSBuildEditorConfig.editorconfig
+D:\Desktop\HocTrenTruong\Lab07_08\obj\Debug\net8.0\Lab07_08.AssemblyInfoInputs.cache
+D:\Desktop\HocTrenTruong\Lab07_08\obj\Debug\net8.0\Lab07_08.AssemblyInfo.cs
+D:\Desktop\HocTrenTruong\Lab07_08\obj\Debug\net8.0\Lab07_08.csproj.CoreCompileInputs.cache
+D:\Desktop\HocTrenTruong\Lab07_08\obj\Debug\net8.0\Lab07_08.dll
+D:\Desktop\HocTrenTruong\Lab07_08\obj\Debug\net8.0\refint\Lab07_08.dll
+D:\Desktop\HocTrenTruong\Lab07_08\obj\Debug\net8.0\Lab07_08.pdb
+D:\Desktop\HocTrenTruong\Lab07_08\obj\Debug\net8.0\Lab07_08.genruntimeconfig.cache
+D:\Desktop\HocTrenTruong\Lab07_08\obj\Debug\net8.0\ref\Lab07_08.dll
