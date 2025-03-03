@@ -12,7 +12,7 @@ public class Cluster
         Points = new List<Point>();
     }
 
-    // Phương thức ToString trả về chuỗi biểu diễn của cụm dưới dạng {A(x, y), B(x, y), C(x, y)}
+    
     public override string ToString()
     {
         return "{" + string.Join(", ", Points) + "}";

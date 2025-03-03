@@ -24,7 +24,7 @@ public class Program
     public static List<Cluster> HierarchicalClustering(List<Cluster> clusters)
     {
         if (clusters == null || clusters.Count == 0) return new List<Cluster>();
-        
+
         while (clusters.Count > 1)
         {
 
@@ -77,10 +77,10 @@ public class Program
         clusters.Add(c1);
         clusters.Add(c2);
 
-        // Thực hiện thuật toán phân cụm phân cấp
+        
         List<Cluster> result = HierarchicalClustering(clusters);
 
-        // In kết quả ra màn hình
+        
         foreach (Cluster cluster in result)
         {
             Console.WriteLine(cluster.ToString());
