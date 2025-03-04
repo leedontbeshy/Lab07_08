@@ -18,73 +18,98 @@
 using System;
 using System.Collections.Generic;
 
-public class Program
+public class HierarchicalClustering
 {
-    // 6/ Cài đặt thuật toán hierarchical clustering để phâncụm (với single linkage).- public List<Cluster> HierarchicalClustering()
-    public static List<Cluster> HierarchicalClustering(List<Cluster> clusters)
+    public List<Cluster> Clusters { get; set; }
+
+    public HierarchicalClustering(List<Point> points)
     {
-        if (clusters == null || clusters.Count == 0) return new List<Cluster>();
-
-        while (clusters.Count > 1)
+        Clusters = new List<Cluster>();
+        foreach (Point p in points)
         {
+            Cluster cluster = new Cluster();
+            cluster.Points.Add(p);
+            Clusters.Add(cluster);
+        }
+    }
 
-            double minDistance = double.MaxValue;
-            int clusterA = 0;
-            int clusterB = 1;
+    // hierarchical clustering single linkage
+    public List<Cluster> Run()
+    {
+        while (Clusters.Count > 1)
+        {
+            // tim cap cum co kc min
+            int cluster1Index = 0;
+            int cluster2Index = 1;
+            double minDistance = Clusters[0].Distance(Clusters[1]);
 
-            // tim 2 cum co khoang cach nho nhat
-            for (int i = 0; i < clusters.Count; i++)
+            for (int i = 0; i < Clusters.Count; i++)
             {
-                for (int j = i + 1; j < clusters.Count; j++)
+                for (int j = i + 1; j < Clusters.Count; j++)
                 {
-                    double distance = clusters[i].Distance(clusters[j]);
+                    double distance = Clusters[i].Distance(Clusters[j]);
                     if (distance < minDistance)
                     {
                         minDistance = distance;
-                        clusterA = i;
-                        clusterB = j;
+                        cluster1Index = i;
+                        cluster2Index = j;
                     }
                 }
             }
 
-            // hop nhat
-            Cluster mergedCluster = clusters[clusterA] + clusters[clusterB];
-            clusters.RemoveAt(clusterB);
-            clusters.RemoveAt(clusterA);
-            clusters.Add(mergedCluster);
+            // hop
+            Cluster newCluster = Clusters[cluster1Index] + Clusters[cluster2Index];
+            Clusters.RemoveAt(cluster2Index);
+            Clusters.RemoveAt(cluster1Index);
+            Clusters.Add(newCluster);
         }
 
-        return clusters;
+        return Clusters;
     }
+}
 
-    // Hàm Main để triển khai kết quả
+
+public class Program
+{
     public static void Main(string[] args)
     {
-        Point p1 = new Point(1, 2);
-        Point p2 = new Point(3, 4);
-        Point p3 = new Point(5, 6);
-        Point p4 = new Point(7, 8);
-
-        Cluster c1 = new Cluster();
-        c1.Points.Add(p1);
-        c1.Points.Add(p2);
-
-        Cluster c2 = new Cluster();
-        c2.Points.Add(p3);
-        c2.Points.Add(p4);
-
-        List<Cluster> clusters = new List<Cluster>();
-        clusters.Add(c1);
-        clusters.Add(c2);
+        
+        List<Point> points = new List<Point>
+        {
+            new Point(1, 2),
+            new Point(2, 3),
+            new Point(3, 4),
+            new Point(10, 11),
+            new Point(11, 12)
+        };
 
         
-        List<Cluster> result = HierarchicalClustering(clusters);
+        HierarchicalClustering hc = new HierarchicalClustering(points);
+
+        Console.WriteLine("Các cụm ban đầu:");
+        foreach (Cluster cluster in hc.Clusters)
+        {
+            Console.WriteLine(cluster.ToString());
+        }
 
         
+        Console.WriteLine("\nKhoảng cách giữa các cụm ban đầu:");
+        for (int i = 0; i < hc.Clusters.Count; i++)
+        {
+            for (int j = i + 1; j < hc.Clusters.Count; j++)
+            {
+                Console.WriteLine($"Khoảng cách giữa cụm {i + 1} và cụm {j + 1}: {hc.Clusters[i].Distance(hc.Clusters[j])}");
+            }
+        }
+
+        
+        List<Cluster> result = hc.Run();
+
+        
+        Console.WriteLine("\nKết quả sau khi phân cụm:");
         foreach (Cluster cluster in result)
         {
             Console.WriteLine(cluster.ToString());
         }
     }
 }
-

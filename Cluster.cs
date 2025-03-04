@@ -1,12 +1,7 @@
-using System;
-using System.Collections.Generic;
-
 public class Cluster
 {
-    
     public List<Point> Points { get; set; }
 
-    
     public Cluster()
     {
         Points = new List<Point>();
@@ -15,18 +10,28 @@ public class Cluster
     
     public override string ToString()
     {
-        return "{" + string.Join(", ", Points) + "}";
+        string result = "{";
+        for (int i = 0; i < Points.Count; i++)
+        {
+            result += Points[i].ToString();
+            if (i < Points.Count - 1)
+            {
+                result += ", ";
+            }
+        }
+        result += "}";
+        return result;
     }
 
-    // phuong thuc distance tinh khoang cach giua cac cum theo single linkage 
+    // khoang cach
     public double Distance(Cluster other)
     {
         double minDistance = double.MaxValue;
-        for (int i = 0; i < Points.Count; i++)
+        foreach (Point p1 in this.Points)
         {
-            for (int j = 0; j < other.Points.Count; j++)
+            foreach (Point p2 in other.Points)
             {
-                double distance = Points[i].Distance(other.Points[j]);
+                double distance = p1.Distance(p2);
                 if (distance < minDistance)
                 {
                     minDistance = distance;
@@ -36,15 +41,18 @@ public class Cluster
         return minDistance;
     }
 
-    // 5/ Bổ sung operator + để hợp 2 Cluster.
-    public static Cluster operator +(Cluster a, Cluster b)
+    // hop 2 cum
+    public static Cluster operator +(Cluster c1, Cluster c2)
     {
-        if (a == null) return b ?? new Cluster();
-        if (b == null) return a;
-
         Cluster result = new Cluster();
-        result.Points.AddRange(a.Points);
-        result.Points.AddRange(b.Points);
+        foreach (Point p in c1.Points)
+        {
+            result.Points.Add(p);
+        }
+        foreach (Point p in c2.Points)
+        {
+            result.Points.Add(p);
+        }
         return result;
     }
 }

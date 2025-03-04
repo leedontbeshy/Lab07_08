@@ -1,27 +1,23 @@
-using System;
-//1/ Xây dựng lớp Point.
 public class Point
 {
-    // 
-    public double x { get; set; }
-    public double y { get; set; }
+    public double X { get; set; }
+    public double Y { get; set; }
 
-    // 
     public Point(double x, double y)
     {
-        this.x = x;
-        this.y = y;
+        X = x;
+        Y = y;
     }
 
-    // 
+
     public override string ToString()
     {
-        return $"A({x}, {y})";
+        return $"A({X}, {Y})";
     }
 
-    
+    // kc 2 diem
     public double Distance(Point other)
     {
-        return Math.Sqrt(Math.Pow(this.x - other.x, 2) + Math.Pow(this.y - other.y, 2));
+        return Math.Sqrt(Math.Pow(this.X - other.X, 2) + Math.Pow(this.Y - other.Y, 2));
     }
 }
